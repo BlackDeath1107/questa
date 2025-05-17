@@ -1,0 +1,60 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma" // or just remove `output` to use default
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  quizzes   Quiz[]   @relation("UserQuizzes")
+  createdAt DateTime @default(now())
+}
+
+model Quiz {
+  id        String     @id @default(uuid())
+  title     String
+  userId    String
+  user      User       @relation("UserQuizzes", fields: [userId], references: [id])
+  questions Question[]
+  responses Response[]
+  createdAt DateTime   @default(now())
+}
+
+model Question {
+  id      String       @id @default(uuid())
+  text    String
+  type    QuestionType
+  options String?
+  quizId  String
+  quiz    Quiz         @relation(fields: [quizId], references: [id])
+  answers Answer[]
+}
+
+model Response {
+  id        String   @id @default(uuid())
+  quizId    String
+  quiz      Quiz     @relation(fields: [quizId], references: [id])
+  answers   Answer[]
+  createdAt DateTime @default(now())
+}
+
+model Answer {
+  id         String   @id @default(uuid())
+  responseId String
+  questionId String
+  value      String
+  response   Response @relation(fields: [responseId], references: [id])
+  question   Question @relation(fields: [questionId], references: [id])
+}
+
+enum QuestionType {
+  RADIO
+  TEXT
+}
