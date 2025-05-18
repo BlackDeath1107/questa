@@ -31,7 +31,7 @@ model Question {
   id      String       @id @default(uuid())
   text    String
   type    QuestionType
-  options String?
+  options Json?
   quizId  String
   quiz    Quiz         @relation(fields: [quizId], references: [id])
   answers Answer[]

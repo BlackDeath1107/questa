@@ -3543,7 +3543,6 @@ export namespace Prisma {
     id: string | null
     text: string | null
     type: $Enums.QuestionType | null
-    options: string | null
     quizId: string | null
   }
 
@@ -3551,7 +3550,6 @@ export namespace Prisma {
     id: string | null
     text: string | null
     type: $Enums.QuestionType | null
-    options: string | null
     quizId: string | null
   }
 
@@ -3569,7 +3567,6 @@ export namespace Prisma {
     id?: true
     text?: true
     type?: true
-    options?: true
     quizId?: true
   }
 
@@ -3577,7 +3574,6 @@ export namespace Prisma {
     id?: true
     text?: true
     type?: true
-    options?: true
     quizId?: true
   }
 
@@ -3666,7 +3662,7 @@ export namespace Prisma {
     id: string
     text: string
     type: $Enums.QuestionType
-    options: string | null
+    options: JsonValue | null
     quizId: string
     _count: QuestionCountAggregateOutputType | null
     _min: QuestionMinAggregateOutputType | null
@@ -3747,7 +3743,7 @@ export namespace Prisma {
       id: string
       text: string
       type: $Enums.QuestionType
-      options: string | null
+      options: Prisma.JsonValue | null
       quizId: string
     }, ExtArgs["result"]["question"]>
     composites: {}
@@ -4177,7 +4173,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Question", 'String'>
     readonly text: FieldRef<"Question", 'String'>
     readonly type: FieldRef<"Question", 'QuestionType'>
-    readonly options: FieldRef<"Question", 'String'>
+    readonly options: FieldRef<"Question", 'Json'>
     readonly quizId: FieldRef<"Question", 'String'>
   }
     
@@ -6803,12 +6799,29 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   export const NullsOrder: {
@@ -6863,6 +6876,20 @@ export namespace Prisma {
    * Reference to a field of type 'QuestionType[]'
    */
   export type ListEnumQuestionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QuestionType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -6991,7 +7018,7 @@ export namespace Prisma {
     id?: StringFilter<"Question"> | string
     text?: StringFilter<"Question"> | string
     type?: EnumQuestionTypeFilter<"Question"> | $Enums.QuestionType
-    options?: StringNullableFilter<"Question"> | string | null
+    options?: JsonNullableFilter<"Question">
     quizId?: StringFilter<"Question"> | string
     quiz?: XOR<QuizScalarRelationFilter, QuizWhereInput>
     answers?: AnswerListRelationFilter
@@ -7014,7 +7041,7 @@ export namespace Prisma {
     NOT?: QuestionWhereInput | QuestionWhereInput[]
     text?: StringFilter<"Question"> | string
     type?: EnumQuestionTypeFilter<"Question"> | $Enums.QuestionType
-    options?: StringNullableFilter<"Question"> | string | null
+    options?: JsonNullableFilter<"Question">
     quizId?: StringFilter<"Question"> | string
     quiz?: XOR<QuizScalarRelationFilter, QuizWhereInput>
     answers?: AnswerListRelationFilter
@@ -7038,7 +7065,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Question"> | string
     text?: StringWithAggregatesFilter<"Question"> | string
     type?: EnumQuestionTypeWithAggregatesFilter<"Question"> | $Enums.QuestionType
-    options?: StringNullableWithAggregatesFilter<"Question"> | string | null
+    options?: JsonNullableWithAggregatesFilter<"Question">
     quizId?: StringWithAggregatesFilter<"Question"> | string
   }
 
@@ -7249,7 +7276,7 @@ export namespace Prisma {
     id?: string
     text: string
     type: $Enums.QuestionType
-    options?: string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     quiz: QuizCreateNestedOneWithoutQuestionsInput
     answers?: AnswerCreateNestedManyWithoutQuestionInput
   }
@@ -7258,7 +7285,7 @@ export namespace Prisma {
     id?: string
     text: string
     type: $Enums.QuestionType
-    options?: string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     quizId: string
     answers?: AnswerUncheckedCreateNestedManyWithoutQuestionInput
   }
@@ -7267,7 +7294,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     type?: EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
-    options?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     quiz?: QuizUpdateOneRequiredWithoutQuestionsNestedInput
     answers?: AnswerUpdateManyWithoutQuestionNestedInput
   }
@@ -7276,7 +7303,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     type?: EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
-    options?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     quizId?: StringFieldUpdateOperationsInput | string
     answers?: AnswerUncheckedUpdateManyWithoutQuestionNestedInput
   }
@@ -7285,7 +7312,7 @@ export namespace Prisma {
     id?: string
     text: string
     type: $Enums.QuestionType
-    options?: string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     quizId: string
   }
 
@@ -7293,14 +7320,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     type?: EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
-    options?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type QuestionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     type?: EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
-    options?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     quizId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -7534,20 +7561,28 @@ export namespace Prisma {
     notIn?: $Enums.QuestionType[] | ListEnumQuestionTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumQuestionTypeFilter<$PrismaModel> | $Enums.QuestionType
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type QuizScalarRelationFilter = {
@@ -7582,7 +7617,6 @@ export namespace Prisma {
     id?: SortOrder
     text?: SortOrder
     type?: SortOrder
-    options?: SortOrder
     quizId?: SortOrder
   }
 
@@ -7590,7 +7624,6 @@ export namespace Prisma {
     id?: SortOrder
     text?: SortOrder
     type?: SortOrder
-    options?: SortOrder
     quizId?: SortOrder
   }
 
@@ -7603,23 +7636,31 @@ export namespace Prisma {
     _min?: NestedEnumQuestionTypeFilter<$PrismaModel>
     _max?: NestedEnumQuestionTypeFilter<$PrismaModel>
   }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type ResponseCountOrderByAggregateInput = {
@@ -7843,10 +7884,6 @@ export namespace Prisma {
     set?: $Enums.QuestionType
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type QuizUpdateOneRequiredWithoutQuestionsNestedInput = {
     create?: XOR<QuizCreateWithoutQuestionsInput, QuizUncheckedCreateWithoutQuestionsInput>
     connectOrCreate?: QuizCreateOrConnectWithoutQuestionsInput
@@ -8041,20 +8078,6 @@ export namespace Prisma {
     not?: NestedEnumQuestionTypeFilter<$PrismaModel> | $Enums.QuestionType
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedEnumQuestionTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.QuestionType | EnumQuestionTypeFieldRefInput<$PrismaModel>
     in?: $Enums.QuestionType[] | ListEnumQuestionTypeFieldRefInput<$PrismaModel>
@@ -8063,23 +8086,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumQuestionTypeFilter<$PrismaModel>
     _max?: NestedEnumQuestionTypeFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
@@ -8091,6 +8097,29 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type QuizCreateWithoutUserInput = {
@@ -8166,7 +8195,7 @@ export namespace Prisma {
     id?: string
     text: string
     type: $Enums.QuestionType
-    options?: string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     answers?: AnswerCreateNestedManyWithoutQuestionInput
   }
 
@@ -8174,7 +8203,7 @@ export namespace Prisma {
     id?: string
     text: string
     type: $Enums.QuestionType
-    options?: string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     answers?: AnswerUncheckedCreateNestedManyWithoutQuestionInput
   }
 
@@ -8256,7 +8285,7 @@ export namespace Prisma {
     id?: StringFilter<"Question"> | string
     text?: StringFilter<"Question"> | string
     type?: EnumQuestionTypeFilter<"Question"> | $Enums.QuestionType
-    options?: StringNullableFilter<"Question"> | string | null
+    options?: JsonNullableFilter<"Question">
     quizId?: StringFilter<"Question"> | string
   }
 
@@ -8488,7 +8517,7 @@ export namespace Prisma {
     id?: string
     text: string
     type: $Enums.QuestionType
-    options?: string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     quiz: QuizCreateNestedOneWithoutQuestionsInput
   }
 
@@ -8496,7 +8525,7 @@ export namespace Prisma {
     id?: string
     text: string
     type: $Enums.QuestionType
-    options?: string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     quizId: string
   }
 
@@ -8543,7 +8572,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     type?: EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
-    options?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     quiz?: QuizUpdateOneRequiredWithoutQuestionsNestedInput
   }
 
@@ -8551,7 +8580,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     type?: EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
-    options?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     quizId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -8587,7 +8616,7 @@ export namespace Prisma {
     id?: string
     text: string
     type: $Enums.QuestionType
-    options?: string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type ResponseCreateManyQuizInput = {
@@ -8599,7 +8628,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     type?: EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
-    options?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     answers?: AnswerUpdateManyWithoutQuestionNestedInput
   }
 
@@ -8607,7 +8636,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     type?: EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
-    options?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
     answers?: AnswerUncheckedUpdateManyWithoutQuestionNestedInput
   }
 
@@ -8615,7 +8644,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     type?: EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
-    options?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type ResponseUpdateWithoutQuizInput = {
